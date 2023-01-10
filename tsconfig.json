@@ -1,0 +1,7 @@
+{
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "compilerOptions": {},
+    "include": ["src", "tests"],
+    "exclude": ["node_modules"],
+    "outDir": "dist"
+}
