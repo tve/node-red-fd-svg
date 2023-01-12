@@ -1,0 +1,82 @@
+<!-- FlexDash HTML node for Node-RED
+     Copyright ©2023 by Thorsten von Eicken, see LICENSE
+-->
+
+<script type="module">
+  // prepare the general edit tab
+  flexdash.insert_general_edit("flexdash-html", "fd-tab-general", null)
+
+  RED.nodes.registerType("flexdash html", {
+    category: "flexdash",
+    color: "#F0E4B8",
+    inputs: 1,
+    outputs: 0,
+    icon: "font-awesome/fa-gear", // icon in flow editor
+    paletteLabel: "FD html",
+
+    defaults: {
+      // required fields for FlexDash Widget nodes
+      fd_container: {
+        type: "flexdash container",
+        value: "",
+        required: true, // grid/panel
+        validate: flexdash.validate_widget_container,
+      },
+      fd_cols: {
+        value: 1,
+        validate(v) {
+          return v > 0 && v <= 20
+        },
+      }, // widget width
+      fd_rows: {
+        value: 1,
+        validate(v) {
+          return v > 0 && v <= 100
+        },
+      }, // widget height
+      fd_array: { value: false }, // create array of this widget
+      fd_array_max: {
+        value: 10,
+        validate(v) {
+          return v > 0 && v < 1000
+        },
+      }, // max array size
+      // name field of Node-RED node (standard)
+      name: { value: "" },
+      // widget fields
+      dom: { value: [] }, // array of DOM elements (HtmlElement)
+    },
+
+    label() {
+      return this.name || "FD html"
+    },
+    labelStyle() {
+      return this.name ? "node_label_italic" : ""
+    },
+
+    oneditprepare() {
+      try {
+        // display the node ID in the general tab
+        $("#nr-node-id").text(this.id || "n/a")
+      } catch (e) {
+        console.log("FlexDash html prepare error", e)
+        throw e
+      }
+    },
+
+    oneditsave() {
+      try {
+      } catch (e) {
+        console.log("FlexDash html save error", e)
+        throw e
+      }
+    },
+  })
+</script>
+
+<script type="text/html" data-template-name="flexdash html">
+  <!-- general properties tab -->
+  <div id="fd-tab-general" style="display:none"><!-- dynamically loaded --></div>
+
+  <input type="hidden" id="node-input-dom" />
+</script>

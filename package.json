@@ -8,6 +8,10 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "cov": "jest --coverage --coverageFrom=\\*.ts"
+  },
+  "dependencies": {
+    "node-html-parser": "^6.1.4"
   }
 }
