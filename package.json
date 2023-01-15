@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "node-html-parser": "^6.1.4",
-    "@flexdash/node-red-flexdash": ">=0.4.135",
-    "node-red-vue": "dev"
+    "@flexdash/node-red-flexdash": ">=0.4.136",
+    "node-red-vue": "^0.1.5"
   },
   "node-red": {
     "version": ">=3.0.0",
