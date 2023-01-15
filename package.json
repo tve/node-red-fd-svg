@@ -1,6 +1,6 @@
 {
   "name": "@tve/node-red-fd-svg",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node-RED nodes to generate SVG widgets for Flexdash",
   "publishConfig": {
     "access": "public"
