@@ -1,7 +1,7 @@
 // FlexDash raw HTML node for Node-RED -- Send raw HTML into a widget
 // Copyright ©2023 by Thorsten von Eicken, see LICENSE
 
-import { parse_html } from "./reflect-html.js"
+const { parse_html } = require("./reflect-html.js")
 
 module.exports = function (RED) {
   function flexdashHtml(config) {
@@ -12,22 +12,39 @@ module.exports = function (RED) {
     const widget = RED.plugins.get("flexdash").initWidget(this, config, "HtmlWidget")
     if (!widget) return // missing config node, thus no FlexDash to hook up to, nothing to do here
 
+    this.html_seq = 0
+
+    // API call to get the current DOM
+    RED.httpAdmin.get("/_fd_html/preview", (req, res) => {
+      console.log("GET /_fd_html/preview", req.query)
+      res.set("Content-Type", "application/json")
+      const data = JSON.stringify({ seq: this.html_seq, html: widget.get("html") })
+      console.log(data)
+      res.send(data)
+    })
+
     this.on("input", msg => {
-      // if we have a string payload then parse that as HTML into the DOM
+      // if we have a string payload then parse that as HTML and notify flow editors
       if (typeof msg.payload == "string") {
         const html = parse_html(msg.payload)
-        widget.set("dom", html)
+        widget.set("html", html)
+        this.html_seq = Date.now()
+        console.log("html_seq", this.html_seq, "html", html)
+        RED.comms.publish("fd-html-preview", { seq: this.html_seq })
       }
       // if we have a string command and optionally some args then perform that command on the DOM
       if (typeof msg.command == "string") {
-        const dom = widget.get("dom")
-        if (typeof dom[msg.command] == "function") {
-          dom[msg.command](...(msg.args || []))
+        const html = widget.get("html") || new HTMLArray()
+        if (typeof html[msg.command] == "function") {
+          html[msg.command](...(msg.args || []))
         }
-        widget.set("dom", dom)
+        widget.set("html", html)
+        this.html_seq = Date.now()
+        RED.comms.publish("fd-html-preview", { seq: this.html_seq })
       }
     })
   }
 
   RED.nodes.registerType("flexdash html", flexdashHtml)
+  RED.plugins.get("node-red-vue").createVueTemplate("flexdash html", __filename)
 }

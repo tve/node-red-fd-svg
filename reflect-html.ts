@@ -12,7 +12,7 @@ export function parse_html(html: string): HtmlArray {
     fixNestedATags: true,
     parseNoneClosedTags: true,
   })
-  console.log(root.childNodes)
+  //console.log(root.childNodes)
   const res = root.childNodes.map(convert).filter(el => el !== null) as HtmlElement[]
   return new HtmlArray(...res)
 }

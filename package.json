@@ -1,4 +1,7 @@
 {
+  "name": "@tve/node-red-fd-svg",
+  "version": "0.1.0",
+  "description": "Node-RED nodes to generate SVG widgets for Flexdash",
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/jest": "^29.2.5",
@@ -12,6 +15,14 @@
     "cov": "jest --coverage --coverageFrom=\\*.ts"
   },
   "dependencies": {
-    "node-html-parser": "^6.1.4"
+    "node-html-parser": "^6.1.4",
+    "@flexdash/node-red-flexdash": ">=0.4.135",
+    "node-red-vue": "dev"
+  },
+  "node-red": {
+    "version": ">=3.0.0",
+    "nodes": {
+      "flexdash html": "flexdash-html.js"
+    }
   }
 }
