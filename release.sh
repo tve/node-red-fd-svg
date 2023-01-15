@@ -29,7 +29,7 @@ npm publish --tag dev
 echo RELEASE=$RELEASE
 if [[ $RELEASE == 1 ]]; then
   echo "Release-tagging $v with 'latest'"
-  npm dist-tag add @tve/node-red-svg@$v latest
+  npm dist-tag add @tve/node-red-fd-svg@$v latest
 fi
 echo ""
 echo "***** Published $v *****"
