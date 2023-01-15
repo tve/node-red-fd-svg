@@ -2,6 +2,9 @@
   "name": "@tve/node-red-fd-svg",
   "version": "0.1.1",
   "description": "Node-RED nodes to generate SVG widgets for Flexdash",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
     "@types/jest": "^29.2.5",
