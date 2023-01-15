@@ -23,15 +23,13 @@ done
 
 v=`npm version patch`
 
-echo "Releasing Node-RED-SVG"
+echo "Releasing @tve/Node-RED-SVG"
 git push
 npm publish --tag dev
-mv node-red-svg.html node-red-svg-dist.html
-ln -s node-red-svg-dev.html node-red-svg.html
 echo RELEASE=$RELEASE
 if [[ $RELEASE == 1 ]]; then
   echo "Release-tagging $v with 'latest'"
-  npm dist-tag add node-red-svg@$v latest
+  npm dist-tag add @tve/node-red-svg@$v latest
 fi
 echo ""
 echo "***** Published $v *****"
