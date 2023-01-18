@@ -2,6 +2,6 @@
     "extends": "@tsconfig/node16/tsconfig.json",
     "compilerOptions": {
     },
-    "include": ["*.ts"]
+    "include": ["**/*.ts"]
     //"exclude": ["node_modules"]
 }

@@ -6,8 +6,11 @@
     "access": "public"
   },
   "devDependencies": {
+    "@master/css-compiler": "^2.0.0-beta.98",
     "@tsconfig/node16": "^1.0.3",
+    "@types/express": "^4.17.15",
     "@types/jest": "^29.2.5",
+    "@types/node-red": "^1.2.1",
     "jest": "^29.3.1",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1"
@@ -18,8 +21,8 @@
     "cov": "jest --coverage --coverageFrom=\\*.ts"
   },
   "dependencies": {
-    "node-html-parser": "^6.1.4",
     "@flexdash/node-red-flexdash": ">=0.4.136",
+    "node-html-parser": "^6.1.4",
     "node-red-vue": "^0.1.5"
   },
   "node-red": {

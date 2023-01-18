@@ -77,8 +77,11 @@ export default defineComponent({
 
     // recursively generate a Vue VNode from a DOM element
     gen_element(elem) {
-      if (elem.tag == "text" && "__text" in elem.attrs) return h("span", elem.attrs.__text)
-      const attrs = elem.classes ? { ...elem.attrs, class: elem.classes } : elem.attrs
+      if (elem.tag == "text") return h("span", {}, elem.attrs._text || "") // span and bare text are identical
+      const attrs = { ...elem.attrs }
+      if (elem.class) attrs.class = elem.classes
+      if (elem.id) attrs.id = elem.id
+      // console.log(`GEN ${elem._}: ${attrsText} #${(elem._children||[]).length}`)
       return h(
         elem.tag,
         attrs,
