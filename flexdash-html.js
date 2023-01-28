@@ -13,11 +13,10 @@ function default_1(RED) {
             return; // missing config node, thus no FlexDash to hook up to, nothing to do here
         let html_seq = 0;
         // API call to get the current DOM
-        RED.httpAdmin.get("/_fd_html/preview", (req, res) => {
-            console.log("GET /_fd_html/preview", req.query);
+        RED.httpAdmin.get(`/_fd_html/preview/${this.id}`, (req, res) => {
+            //console.log(`GET /_fd_html/preview/${this.id}`, req.query)
             res.set("Content-Type", "application/json");
             const data = JSON.stringify({ seq: html_seq, html: widget.get("html") });
-            console.log(data);
             res.send(data);
         });
         this.on("input", (msg) => {
@@ -53,7 +52,9 @@ function default_1(RED) {
                     if (["append", "prepend", "replaceWith"].includes(cmd.command)) {
                         args = args.map(reflect_html_1.fromJSON);
                     }
-                    console.log(`CMD ${cmd.command}(${JSON.stringify(args)}) on ${sel.length}`);
+                    //console.log(`CMD ${cmd.command}(${JSON.stringify(args).substring(0,100)}) on ${sel.length}`)
+                    // perform the command
+                    ;
                     sel[cmd.command](...args);
                     updated = true;
                     //console.log("RESULT", JSON.stringify(html, null, 2))

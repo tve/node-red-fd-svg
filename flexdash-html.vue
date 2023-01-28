@@ -17,6 +17,7 @@ export default defineComponent({
     fd_array: { default: false, type: Boolean }, // create array of this widget
     fd_array_max: { default: 10, type: Number }, // max array size
   },
+  inject: ["node"], // needed to get id
   data: () => ({
     tab: 0,
     html_preview: null, // HTML tree to render for preview
@@ -48,7 +49,7 @@ export default defineComponent({
   methods: {
     fetch_preview() {
       this.fetching = true
-      fetch("_fd_html/preview")
+      fetch(`_fd_html/preview/${this.node.id}`)
         .then(res => {
           if (!res.ok) throw new Error(`HTTP status ${res.status}: ${res.statusText}`)
           return res.json()

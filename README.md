@@ -7,7 +7,7 @@ HTML via messages.
 
 Messages may have the following fields:
 
-- `html` - a string containing HTML to replace the entire contents of the widget
+- `payload` - a string containing HTML to replace the entire contents of the widget
 - `selector` - a CSS selector to select elements to operate on
 - `command` - a string containing a command to execute on the selected elements, see below
 - `args` - an array of arguments to pass to the command
