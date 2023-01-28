@@ -13,6 +13,7 @@ function default_1(RED) {
             return; // missing config node, thus no FlexDash to hook up to, nothing to do here
         let html_seq = 0;
         // API call to get the current DOM
+        this.log(`Registering /_fd_html/preview/${this.id}`);
         RED.httpAdmin.get(`/_fd_html/preview/${this.id}`, (req, res) => {
             //console.log(`GET /_fd_html/preview/${this.id}`, req.query)
             res.set("Content-Type", "application/json");

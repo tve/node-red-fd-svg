@@ -32,6 +32,7 @@ export default function (RED: any) {
     let html_seq = 0
 
     // API call to get the current DOM
+    this.log(`Registering /_fd_html/preview/${this.id}`)
     RED.httpAdmin.get(`/_fd_html/preview/${this.id}`, (req: Request, res: Response) => {
       //console.log(`GET /_fd_html/preview/${this.id}`, req.query)
       res.set("Content-Type", "application/json")

@@ -23,7 +23,7 @@ done
 
 v=`npm version patch`
 
-echo "Releasing @tve/Node-RED-HTML"
+echo "Releasing @tve/Node-RED-FD-HTML"
 git push
 npm publish --tag dev
 echo RELEASE=$RELEASE
