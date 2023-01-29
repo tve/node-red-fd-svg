@@ -1,2 +1,7 @@
 node_modules/
+widgets/node_modules
+widgets/package-lock.json
 coverage/
+
+demo1.html
+floor3.svg
