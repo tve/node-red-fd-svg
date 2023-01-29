@@ -1,8 +1,13 @@
 {
   "name": "@tve/node-red-fd-html",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Node-RED nodes to produce HTML and SVG widgets for Flexdash",
-  "keywords": [ "dashboard", "flexdash", "node-red", "example" ],
+  "keywords": [
+    "dashboard",
+    "flexdash",
+    "node-red",
+    "example"
+  ],
   "publishConfig": {
     "access": "public"
   },
